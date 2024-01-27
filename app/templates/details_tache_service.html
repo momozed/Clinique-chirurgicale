@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <title>Détails de la tache</title>
+</head>
+<body>
+    <h1>Détails de la tache a faire</h1>
+    <p>ID de la tache: {{ tache.tacheID }}</p>
+    <p>Description: {{ tache.description }}</p>
+    <p>StatusT: {{ tache.statusT }}</p>
+    <p>Deadline: {{ tache.deadline }}</p>
+    <p>Nom du medecin responsable: {{ tache.medecinID.last_name }}</p>
+    <p>Date du prochain rendezvous: {{ tache.rendezvousID.date }}</p>
+    <p>Heure du procain rendezvous: {{ tache.rendezvousID.time }}</p>
+    <form action="{% url 'lst_ts'  %}" >
+        {% csrf_token %}
+        <button class="b" type="submit">Retour</button>
+      </form>
+    
+</body>
+</html>

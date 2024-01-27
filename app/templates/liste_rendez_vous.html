@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/stylesheet.css' %}">
+    <title>Liste des Rendez-vous</title>
+</head>
+<body>
+    <h1>Liste des Rendez-vous</h1>
+    <div class="container">
+    <table class="t">
+        <tr>
+          <th scope="col">RenderVousID</th>
+          <th scope="col">Patient</th>
+          <th scope="col">Medecin</th>
+          <th scope="col">Date</th>
+          <th scope="col">Heure</th>
+          <th scope="col">Status</th>
+          <th scope="col">Crée le</th>
+          <th scope="col">Modifier</th>
+          <th scope="col">Supprimer</th>
+        </tr>
+        {% for rendez_vous in rendez_vous %}
+        <tr>
+          <th scope="row">{{ rendez_vous.renderVousID }}</th>
+          <td>{{ rendez_vous.patientID }}</td>
+          <td>{{ rendez_vous.medecinID }}</td>
+          <td>{{ rendez_vous.date }}</td>
+          <td>{{ rendez_vous.time }}</td>
+          <td>{{ rendez_vous.status }}</td>
+          <td>{{ rendez_vous.created_at }}</td>
+          <td><form action="{% url 'maj_rdv' rendez_vous.renderVousID %}" method="post">
+            {% csrf_token %}
+                  <button  class="b" type="submit">Modifier</button>
+              </form>
+          </td>
+          <td><form action="{% url 'spr_rdv' rendez_vous.renderVousID %}" method="post">
+            {% csrf_token %}
+                  <button  class="b" type="submit">Supprimer</button>
+              </form>
+          </td>
+        
+          
+        </tr>
+        {% endfor %}
+      </table>
+      <div>
+        <form action="{% url 'rdv'  %}" >
+          {% csrf_token %}
+          <button  class="b" type="submit">Ajouter</button>
+        </form>
+        <form action="{% url 'index'  %}" >
+          {% csrf_token %}
+          <button class="b" type="submit">Retour</button>
+        </form>
+      </div>
+    </div>
+    
+</body>
+</html>

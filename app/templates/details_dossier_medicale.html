@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <title>Détails du dossier medicale du Patient</title>
+</head>
+<body>
+    <h1>Détails du dossier medicale du Patient</h1>
+    <p>ID du medecin: {{ dossier.rendezvousID.medecinID }}</p>
+    <p>patient: {{ dossier.patientID.last_name }}</p>
+    <p>Info medicale: {{ dossier.medical_info }}</p>
+    <p>Cree le: {{ dossier.created_at }}</p>
+    <p>ID prochain rendezvous: {{ dossier.rendezvousID }}</p>
+    <p>Date du prochain rendezvous: {{ dossier.rendezvousID.date }}</p>
+    <p>Heure du procain rendezvous: {{ dossier.rendezvousID.time }}</p>
+    <form action="{% url 'lst_dm'  %}" >
+        {% csrf_token %}
+        <button class="b" type="submit">Retour</button>
+      </form>
+    
+</body>
+</html>

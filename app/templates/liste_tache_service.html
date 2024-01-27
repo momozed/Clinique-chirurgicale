@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/stylesheet.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <title>Liste des Taches services</title>
+</head>
+<body>
+    <h1>Liste des Taches services</h1>
+    <div class="container">
+        <table>
+            <tr>
+            <th scope="col">TacheID</th>
+            <th scope="col">Nom Medecin</th>
+            <th scope="col">Details</th>
+            <th scope="col">Modifier</th>
+            <th scope="col">Supprimer</th>
+            </tr>
+            {% for tache_service in taches_service %}
+            <tr>
+            <th scope="row">{{ tache_service.tacheID }}</th>
+            <td>{{ tache_service.medecinID.last_name }}</td>
+            <td><form action="{% url 'details_t' tache_service.tacheID %}" >
+                        {% csrf_token %}
+                        <button class="b" type="submit">Details</button>
+                </form>
+            </td>
+            <td><form action="{% url 'maj_ts' tache_service.tacheID %}"  method="post">
+                {% csrf_token %}
+                <button  class="b" type="submit">Modifier</button>
+                </form>
+            </td>
+            <td><form action="{% url 'spr_ts' tache_service.tacheID %}"  method="post">
+                {% csrf_token %}
+                <button  class="b" type="submit">Supprimer</button>
+                </form>
+            </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <div>
+            <form   action="{% url 'ts'  %}" >
+            {% csrf_token %}
+            <button class="b" type="submit">Ajouter</button>
+            </form>
+            <form   action="{% url 'index'  %}" >
+            {% csrf_token %}
+            <button class="b" type="submit">Retour</button>
+            </form>
+        </div>
+     </div>
+    <!-- Ajoutez d'autres éléments HTML selon vos besoins -->
+</body>
+</html>

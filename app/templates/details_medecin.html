@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <title>Détails du Medecin</title>
+</head>
+<body>
+    <h1>Détails du Medecin</h1>
+    <p>Medecin ID: {{ medecin.medecinID }}</p>
+    <p>Nom: {{ medecin.last_name }}</p>
+    <p>Prenom: {{ medecin.first_name }}</p>
+    <p>Numero de telephone: {{ medecin.phone_number }}</p>
+    <form action="{% url 'liste_medecins'  %}" >
+        {% csrf_token %}
+        <button class="b" type="submit">Retour</button>
+      </form>
+</body>
+</html>

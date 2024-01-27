@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/stylesheet.css' %}">
+    <title>Liste des Patients</title>
+</head>
+<body>
+    <h1>Liste des Patients</h1>
+    <div class="container">
+    <table>
+        <tr>
+          <th scope="col">Patient ID</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Details</th>
+          <th scope="col">Modifier</th>
+          <th scope="col">Supprimer</th>
+        </tr>
+        {% for patient in patients %}
+        <tr>
+          <th scope="row">{{ patient.patientID }}</th>
+          <td>{{ patient.last_name }}</td>
+          <td><form action="{% url 'details_p' patient.patientID %}" method="post">
+            {% csrf_token %}
+                  <button class="b" type="submit">Details</button>
+              </form>
+          </td>
+          <td><form action="{% url 'maj_patn' patient.patientID %}" method="post">
+            {% csrf_token %}
+                  <button class="b" type="submit">Modifier</button>
+              </form>
+          </td>
+          <td><form action="{% url 'spr_patn' patient.patientID %}" method="post">
+                    {% csrf_token %}
+                    <button class="b" type="submit">Supprimer</button>
+              </form>
+          </td>
+          
+          
+        </tr>
+        {% endfor %}
+      </table>
+      <div>
+        <form action="{% url 'patn'  %}" >
+          {% csrf_token %}
+          <button class="b" type="submit">Ajouter</button>
+        </form>
+        <form action="{% url 'index'  %}" >
+          {% csrf_token %}
+          <button class="b" type="submit">Retour</button>
+        </form>
+      </div>
+    </div>
+        
+   
+</body>
+</html>

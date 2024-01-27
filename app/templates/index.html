@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <title>Clinique Chirurgicale</title>
+    <style>
+        body {
+            background-image: url("static/css/chir.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bienvenue sur la page d'accueil</h1>
+
+    <div class="index">
+            <h2>Présentation de la Clinique Chirurgicale </h2>
+            <p>
+                Bienvenue au sein de la Clinique Chirurgicale , dédiée à notre équipe exceptionnelle de professionnels de la santé.
+                Nous sommes engagés à fournir un environnement de travail collaboratif et à soutenir nos membres du personnel dans la
+                prestation de soins chirurgicaux de haute qualité.
+            </p>
+
+            <p>
+                Que vous soyez impliqué dans la planification des interventions, la gestion des dossiers médicaux, la coordination des 
+                rendez-vous chirurgicaux, ou d'autres tâches administratives essentielles, nous sommes reconnaissants de votre contribution 
+                à la mission de la clinique.
+            </p>
+        
+
+        <ul>
+            <li><a href="{% url 'liste_patients' %}">Liste des patients</a></li>
+            <li><a href="{% url 'liste_medecins' %}">Liste des médecins</a></li>
+            <li><a href="{% url 'lst_dm' %}">Liste des dossiers médicaux</a></li>
+            <li><a href="{% url 'lst_rdv' %}">Liste des rendez-vous</a></li>
+            <li><a href="{% url 'lst_ts' %}">Liste des tâches de service</a></li>
+        </ul>
+    </div>
+    
+</body>
+</html>
