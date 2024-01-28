@@ -120,7 +120,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'css'
+    BASE_DIR / 'app/static/css'
 ]
 
 # Default primary key field type
